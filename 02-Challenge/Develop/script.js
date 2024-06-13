@@ -1,14 +1,35 @@
 // Get a reference to the #add-employees-btn element
 const addEmployeesBtn = document.querySelector('#add-employees-btn');
+//this is the button to start the process 
 
 // Collect employee data
 const collectEmployees = function() {
   // TODO: Get user input to create and return an array of employee objects
+  //add the text box to get the data
+  let adding = true;
+  const employeeArray = []
+  while(adding){
+    //make 1 employee
+    //this wants me to make an employee object, and give it traits
+    const employee = {
+      firstName : prompt("Please enter first name"),
+      lastName : prompt("Please enter last name"),
+      salary : prompt("Please enter salary")
+    }
+    employeeArray.push(employee); //add to employee list
+    adding = confirm("Add another employee?"); //add more employess
+  }
+  return employeeArray; //it is expected to return an array
 }
 
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
   // TODO: Calculate and display the average salary
+  let total = 0;
+  for (item of employeesArray){
+    total = total + item.salary;
+  }
+  console.log(total);
 }
 
 // Select a random employee
@@ -46,6 +67,7 @@ const displayEmployees = function(employeesArray) {
 
     const salaryCell = document.createElement("td");
     // Format the salary as currency
+    //currentEmployee.salary requires an object with traits
     salaryCell.textContent = currentEmployee.salary.toLocaleString("en-US",{
       style:"currency",
       currency:"USD"
@@ -58,6 +80,7 @@ const displayEmployees = function(employeesArray) {
 }
 
 const trackEmployeeData = function() {
+  //returns many employees
   const employees = collectEmployees();
 
   console.table(employees);
@@ -66,8 +89,9 @@ const trackEmployeeData = function() {
 
   console.log('==============================');
 
-  getRandomEmployee(employees);
+  // getRandomEmployee(employees);
 
+  //sorts the employees by last name
   employees.sort(function(a,b) {
     if (a.lastName < b.lastName) {
       return -1;
@@ -75,7 +99,6 @@ const trackEmployeeData = function() {
       return 1;
     }
   });
-
   displayEmployees(employees);
 }
 
