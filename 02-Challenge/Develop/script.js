@@ -2,6 +2,11 @@
 const addEmployeesBtn = document.querySelector('#add-employees-btn');
 //this is the button to start the process 
 
+//need a randomizer
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+  }
+
 // Collect employee data
 const collectEmployees = function() {
   // TODO: Get user input to create and return an array of employee objects
@@ -32,13 +37,15 @@ const displayAverageSalary = function(employeesArray) {
   }
   //it just wants the average salary in console log
   //no line break, it will screw with the log
-  console.log(`The average employee salary between our ${employeesArray.length} employee(2) is #${total/employeesArray.length}`); 
+  console.log(`The average employee salary between our ${employeesArray.length} employee(2) is $${total/employeesArray.length}`); 
 }
 
 
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
   // TODO: Select and display a random employee
+  const winner = getRandomInt(employeesArray.length); //gets a random index within bounds
+  console.log(`Congratulations to ${employeesArray[winner].firstName} ${employeesArray[winner].lastName}, our random drawing winner!`);
 }
 
 /*
@@ -93,7 +100,7 @@ const trackEmployeeData = function() {
 
   console.log('==============================');
 
-  // getRandomEmployee(employees);
+  getRandomEmployee(employees);
 
   //sorts the employees by last name
   employees.sort(function(a,b) {
