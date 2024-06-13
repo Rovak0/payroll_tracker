@@ -16,6 +16,7 @@ const collectEmployees = function() {
       lastName : prompt("Please enter last name"),
       salary : prompt("Please enter salary")
     }
+    employee.salary = parseInt(employee.salary); //recast the salary as a number
     employeeArray.push(employee); //add to employee list
     adding = confirm("Add another employee?"); //add more employess
   }
@@ -25,12 +26,15 @@ const collectEmployees = function() {
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
   // TODO: Calculate and display the average salary
-  let total = 0;
+  let total = 0;//get a running total
   for (item of employeesArray){
-    total = total + item.salary;
+    total = total + item.salary; //iterate through and grab the salary
   }
-  console.log(total);
+  //it just wants the average salary in console log
+  //no line break, it will screw with the log
+  console.log(`The average employee salary between our ${employeesArray.length} employee(2) is #${total/employeesArray.length}`); 
 }
+
 
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
